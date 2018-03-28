@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 class Tile extends React.Component{
     constructor (){
         super();
@@ -13,7 +14,9 @@ class Tile extends React.Component{
     }
     render(){
         return(
-            <input type = "number" max={9} min={1} value={}/>
+            <input type = "number" max={9} min={1} value={this.props.tileValue}/>
         )
     }
 }
+
+export default Tile;
