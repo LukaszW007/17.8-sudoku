@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../../sudoku/src/containers/App.js';
-import '../../sudoku/src/index.css';
+import App from './containers/App.js';
+// import './index.css';
 import {AppContainer} from 'react-hot-loader';
-import registerServiceWorker from './registerServiceWorker';
 
 const render = Component => {
     ReactDOM.render(
@@ -22,6 +21,4 @@ if (module.hot) {
         render(App)
     })
 }
-
-registerServiceWorker();
 

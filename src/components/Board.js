@@ -2,27 +2,35 @@ import React from 'react';
 import Tile from './Tile.js';
 
 class Board extends React.Component {
-    constructor () {
+    constructor(props) {
         super(props);
         this.state = {
-            tileValue:''
+            tileValue: '',
+            tileNewValue: ''//czy potrzebna ten stan?
         }
     }
 
-    render () {
+    render() {
 
-        const tiles = this.props.board.map{(SingleTile) =>
-            if(singleTile==='.'){
-            this.setState.tileValue('');
-            }else{
-                this.setState.tileValue(singleTile)
-            }
-                <li>
-                    <Tile valueOfTile = {this.state.tileValue}/>
-                </li>
-        };
+        const tiles = this.props.board.map((singleTile) => {
+                if (singleTile === '.') {
+                    return('');
+                } else {
+                    return(singleTile)
+                }
 
-        return(
+                return (
+                    <li>
+                        <Tile key={singleTile.id} valueOfTile={this.state.tileValue}
+                              changedValue={(newValueFromTile) => this.props.onChangeValue(singleTile.id, newValueFromTile)}
+                        />
+                    </li>
+                )
+            },
+            // console.log(this.state.tileValue)
+        );
+
+        return (
             <ul>
                 {tiles}
             </ul>
@@ -30,4 +38,5 @@ class Board extends React.Component {
     }
 
 }
+
 export default Board;
