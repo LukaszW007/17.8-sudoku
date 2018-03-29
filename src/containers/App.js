@@ -1,43 +1,41 @@
 import React from 'react';
 import Board from '../components/Board.js';
-import Tile from '../components/Tile.js'
+import Tile from '../components/Tile.js';
 import './App.css';
-
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            initialBoard: '4.51..9787184.96.56.9875...174253869856917...3926.45179.134.756267591….43768192',
-            board: []
-        }
+            initialBoard:
+                '4.51..9787184.96.56.9875...174253869856917...3926.45179.134.756267591….43768192',
+            board: [],
+        };
+    }
+
+    componentWillMount() {
+        this.stringToArray();
     }
 
     stringToArray() {
-        this.setState({board: this.state.initialBoard.split()});
-        // console.log(this.state.board);
+        this.setState({ board: this.state.initialBoard.split('') });
     }
 
     editTileValue(id, value) {
         const newBoard = this.board.splice(id, 1, value);
-        this.setState({board:newBoard})
+        this.setState({ board: newBoard });
     }
 
-    checkGame() {
+    checkGame() {}
 
-    }
-
-    newGame() {
-
-    }
+    newGame() {}
 
     render() {
-        this.stringToArray();
+        console.log('app.js', this.state.board);
         return (
             <div className="App">
                 <h1>Sudoku</h1>
-                <Board board={this.state.board}/>
-                <Tile onChangeValue={(id, value) => this.editTileValue(id, value)}/>
+                <Board board={this.state.board} onChangeValue={() => {}} />
                 <div className="buttons">
                     <button>Check</button>
                     <button>New Game</button>

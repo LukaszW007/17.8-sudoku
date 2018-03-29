@@ -6,37 +6,33 @@ class Board extends React.Component {
         super(props);
         this.state = {
             tileValue: '',
-            tileNewValue: ''//czy potrzebna ten stan?
-        }
+            tileNewValue: '', //czy potrzebna ten stan?
+        };
     }
 
     render() {
-
-        const tiles = this.props.board.map((singleTile) => {
-                if (singleTile === '.') {
-                    return('');
-                } else {
-                    return(singleTile)
-                }
-
-                return (
-                    <li>
-                        <Tile key={singleTile.id} valueOfTile={this.state.tileValue}
-                              changedValue={(newValueFromTile) => this.props.onChangeValue(singleTile.id, newValueFromTile)}
-                        />
-                    </li>
-                )
-            },
-            // console.log(this.state.tileValue)
+        const typeOfTile = (singleTile, index) => (
+            <li key={index}>
+                <Tile
+                    valueOfTile={singleTile}
+                    changedValue={newValueFromTile =>
+                        this.props.onChangeValue(
+                            singleTile.id,
+                            newValueFromTile
+                        )
+                    }
+                />
+            </li>
         );
 
         return (
             <ul>
-                {tiles}
+                {this.props.board.map((singleTile, index) =>
+                    typeOfTile(singleTile, index)
+                )}
             </ul>
-        )
+        );
     }
-
 }
 
 export default Board;
