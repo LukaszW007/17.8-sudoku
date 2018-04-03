@@ -1,0 +1,8 @@
+.tile{
+    width: 30px;
+    height: 30px;
+    outline: none;
+    left: 10px;
+    top: 10px;
+    position: relative;
+}

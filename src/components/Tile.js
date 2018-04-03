@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './Tile.css';
 
 class Tile extends React.Component {
     constructor(props) {
@@ -11,15 +12,17 @@ class Tile extends React.Component {
         const inputValue = event.target.value;
 
         this.setState({ tilesNewValue: inputValue }, function() {
-            this.props.changedValue(this.state.inputValue); //czy mozna zrobic callbacka bez uzycia metody setState(tilesNewValue) i uzycia stanu tilesNewValue?
+            this.props.changedValue(this.state.inputValue);
         });
     }
     render() {
         return (
             <input
-                type='number'
-                max=9
-                min=1
+                className={style.tile}
+                maxLength={1}
+                type={'number'}
+                max={9}
+                min={1}
                 value={this.state.tilesNewValue}
                 onChange={event => this.onChange(event)}
             />

@@ -1,18 +1,18 @@
 import React from 'react';
 import Tile from './Tile.js';
+import style from './Board.css';
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tileValue: '',
-            tileNewValue: '', //czy potrzebna ten stan?
+            tileValue: ''
         };
     }
 
     render() {
         const typeOfTile = (singleTile, index) => (
-            <li key={index}>
+            <li key={index} className={style.boardTile}>
                 <Tile
                     valueOfTile={singleTile}
                     changedValue={newValueFromTile =>
@@ -26,7 +26,7 @@ class Board extends React.Component {
         );
 
         return (
-            <ul>
+            <ul className={style.boardList}>
                 {this.props.board.map((singleTile, index) =>
                     typeOfTile(singleTile, index)
                 )}
