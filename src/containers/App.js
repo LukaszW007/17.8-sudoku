@@ -28,7 +28,13 @@ class App extends React.Component {
 
     checkGame() {}
 
-    newGame() {}
+    /*newGame() {
+        this.setState({initialBoard:sudoku.generate})
+    }*/
+
+    restartGame(){
+        this.setState({board:this.state.initialBoard});
+    }
 
     render() {
         console.log('app.js', this.state.board);
@@ -38,9 +44,9 @@ class App extends React.Component {
                 <Board board={this.state.board} onChangeValue={() => {}} />
                 <div className="buttons">
                     <button>Check</button>
-                    <button>New Game</button>
+                    <button onClick={this.state.newGame}>New Game</button>
                     <button>Solve</button>
-                    <button>Restart</button>
+                    <button onClick={this.state.restartGame}>Restart</button>
                 </div>
             </div>
         );

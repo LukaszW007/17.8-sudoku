@@ -6,14 +6,21 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tileValue: ''
+            isNumber: false
         };
+    }
+    isItNumber(value){
+        console.log('BOARD: wartosc kafelka to '+value);
+        if (value==='.'){
+            this.setState({isNumber:false})
+        }else this.setState({isNumber:true})
     }
 
     render() {
         const typeOfTile = (singleTile, index) => (
             <li key={index} className={style.boardTile}>
                 <Tile
+                    colorOfInitialTile={this.isItNumber(singleTile)}
                     valueOfTile={singleTile}
                     changedValue={newValueFromTile =>
                         this.props.onChangeValue(
