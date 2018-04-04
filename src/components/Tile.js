@@ -13,12 +13,19 @@ class Tile extends React.Component {
 
         this.setState({ tilesNewValue: inputValue }, function() {
             this.props.changedValue(this.state.inputValue);
+
         });
+    }
+    checkColor(value){
+        console.log('wartosc kafelka to '+value);
+        if (value==='.'){
+            return style.tile
+        }else return style.tileRed
     }
     render() {
         return (
             <input
-                className={style.tile}
+                className={this.checkColor(this.state.tilesNewValue)}
                 maxLength={1}
                 type={'number'}
                 max={9}
