@@ -6,28 +6,29 @@ class Tile extends React.Component {
         super(props);
         this.state = {
             tilesNewValue: props.valueOfTile,
-            isItNumber: props.isNumber
+            isItNumber: props.isNumber,
+            enabling: true,
+            disabling: false
         };
     }
+
     onChange(event) {
         const inputValue = event.target.value;
 
-        this.setState({ tilesNewValue: inputValue }, function() {
-            this.props.changedValue(this.state.inputValue);
-            this.setState({isItNumber:false})
+        this.setState({tilesNewValue: inputValue}, function () {
+            this.props.changedValue(inputValue);
+            this.setState({isItNumber: false})
         });
     }
-    checkColor(value){
-        console.log('wartosc kafelka to '+value);
-        if (value===false){
-            // this.setState({isItNumber:false});
+
+    checkColor(value) {
+        if (value === false) {
             return style.tile
-        }else {
-            // this.setState({isItNumber:true});
+        } else {
             return style.tileRed;
         }
-        // console.log('czy jest liczba: '+this.state.isItNumber);
     }
+
     render() {
         return (
             <input

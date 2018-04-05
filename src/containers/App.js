@@ -2,6 +2,7 @@ import React from 'react';
 import Board from '../components/Board.js';
 import Tile from '../components/Tile.js';
 import './App.css';
+import sudoku from 'sudoku-umd';
 
 class App extends React.Component {
     constructor(props) {
@@ -22,15 +23,17 @@ class App extends React.Component {
     }
 
     editTileValue(id, value) {
-        const newBoard = this.board.splice(id, 1, value);
+        console.log('id: '+id+' wartosc: '+value);
+        const newBoard = this.state.board.splice(id, 1, value);
         this.setState({ board: newBoard });
+        console.log('to jest nowa tablica '+this.state.board);
     }
 
     checkGame() {}
 
-    /*newGame() {
+    newGame() {
         this.setState({initialBoard:sudoku.generate})
-    }*/
+    }
 
     restartGame(){
         this.setState({board:this.state.initialBoard});
@@ -41,10 +44,10 @@ class App extends React.Component {
         return (
             <div className="App">
                 <h1>Sudoku</h1>
-                <Board board={this.state.board} onChangeValue={() => {}} />
+                <Board board={this.state.board} onChangeValue={(id,value) => {this.editTileValue(id,value)}} />
                 <div className="buttons">
                     <button>Check</button>
-                    <button onClick={this.state.newGame}>New Game</button>
+                    <button onClick={this.newGame}>New Game</button>
                     <button>Solve</button>
                     <button onClick={this.state.restartGame}>Restart</button>
                 </div>

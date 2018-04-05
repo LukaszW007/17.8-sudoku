@@ -1,4 +1,4 @@
-.tile{
+.tile, .tileRed{
     width: 30px;
     height: 30px;
     outline: none;
@@ -8,10 +8,8 @@
 }
 .tileRed{
     color: red;
-    width: 30px;
-    height: 30px;
+    /*pointer-events: none;*/
+}
+textarea:focus, input:focus{
     outline: none;
-    left: 10px;
-    top: 10px;
-    position: relative;
 }
