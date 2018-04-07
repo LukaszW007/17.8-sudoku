@@ -19,24 +19,32 @@ class App extends React.Component {
     }
 
     stringToArray() {
-        this.setState({ board: this.state.initialBoard.split('') });
+        this.setState({board: this.state.initialBoard.split('')});
+        console.log('initialBoard to: '+typeof this.state.initialBoard);
+        console.log('board to: '+typeof this.state.board);
     }
 
     editTileValue(id, value) {
-        console.log('id: '+id+' wartosc: '+value);
+        console.log('id: ' + id + ' wartosc: ' + value);
         const newBoard = this.state.board.splice(id, 1, value);
-        this.setState({ board: newBoard });
-        console.log('to jest nowa tablica '+this.state.board);
+        // console.log('newboard 0 element '+newBoard[1]);
+        // console.log('newboard 1 element '+newBoard[0]);
+        // const arr = Object.keys(newBoard).map(function (key) { return newBoard[key]; });
+        // console.log('arr rodzaj: ' + typeof newBoard[0]);
+        this.setState({board: newBoard});
+        console.log('to jest nowa tablica ' + this.state.board + ' a to rodzaj: ' + typeof this.state.board);
+        this.componentWillMount();
     }
 
-    checkGame() {}
+    checkGame() {
+    }
 
     newGame() {
-        this.setState({initialBoard:sudoku.generate})
+        this.setState({initialBoard: sudoku.generate})
     }
 
-    restartGame(){
-        this.setState({board:this.state.initialBoard});
+    restartGame() {
+        this.setState({board: this.state.initialBoard});
     }
 
     render() {
@@ -44,7 +52,9 @@ class App extends React.Component {
         return (
             <div className="App">
                 <h1>Sudoku</h1>
-                <Board board={this.state.board} onChangeValue={(id,value) => {this.editTileValue(id,value)}} />
+                <Board board={this.state.board} onChangeValue={(id, value) => {
+                    this.editTileValue(id, value)
+                }}/>
                 <div className="buttons">
                     <button>Check</button>
                     <button onClick={this.newGame}>New Game</button>

@@ -6,7 +6,8 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isNumber: false
+            isNumber: false,
+            tilesIndex:''
         };
     }
   /*  isItNumber(value){
@@ -16,18 +17,23 @@ class Board extends React.Component {
         }else this.setState({isNumber:true})*!/
     }*/
 
+    /*getIndexOfTile(index){
+        this.setState({tilesIndex:index})
+    }*/
+
     render() {
         const typeOfTile = (singleTile, index) => (
             <li key={index} className={style.boardTile}>
                 <Tile
                     //colorOfInitialTile={this.isItNumber(singleTile)}
                     valueOfTile={singleTile}
-                    changedValue={newValueFromTile =>
+                    changedValue={(newValueFromTile) =>
+                    {console.log('to jest index kafelka: '+index);
                         this.props.onChangeValue(
-                            singleTile.id,
+                            index,
                             newValueFromTile
                         )
-                    }
+                    }}
                 />
             </li>
         );
