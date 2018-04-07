@@ -39,15 +39,30 @@ class App extends React.Component {
 
     }
 
+    solve(){
+        if(!sudoku.solve(this.state.board)){
+            console.log('Podążasz w złym kierunku')
+        }else {
+            console.log('Podążasz w dobrym kierunku')        }
+    }
     checkGame() {
+        if(!sudoku.solve(this.state.board)){
+            console.log('Nie da sie rozwiazac')
+        }else {
+            this.setState({board:sudoku.solve(this.state.board)})
+        }
     }
 
     newGame() {
-        this.setState({initialBoard: sudoku.generate})
+        const generatedBoard=sudoku.generate("medium");
+        this.setState({initialBoard: generatedBoard},this.componentWillMount());
+        console.log('genreowanie nowego sudoku: '+generatedBoard);
+        // this.render();
+
     }
 
     restartGame() {
-        this.setState({board: this.state.initialBoard});
+        this.componentWillMount();
     }
 
     render() {
@@ -59,10 +74,10 @@ class App extends React.Component {
                     this.editTileValue(id, value)
                 }}/>
                 <div className="buttons">
-                    <button>Check</button>
-                    <button onClick={this.newGame}>New Game</button>
-                    <button>Solve</button>
-                    <button onClick={this.state.restartGame}>Restart</button>
+                    <button onClick={()=>this.checkGame()}>Check</button>
+                    <button onClick={()=>this.newGame()}>New Game</button>
+                    <button onClick={()=>this.solve()}>Solve</button>
+                    <button onClick={()=>this.restartGame()}>Restart</button>
                 </div>
             </div>
         );
