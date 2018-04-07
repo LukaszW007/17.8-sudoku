@@ -13,7 +13,7 @@ class Tile extends React.Component {
         };
     }
 
-/*    whatIsValue(){
+    whatIsValue(){
         if(!this.state.tilesNewValue){
             console.log('wartosc z board');
             return this.state.initValue
@@ -22,7 +22,7 @@ class Tile extends React.Component {
             return this.state.tilesNewValue;
         }
 
-    }*/
+    }
     onChange(event) {
         const inputValue = event.target.value;
         console.log('nowa wartosc kafelka z Tile.js '+inputValue);
@@ -49,8 +49,8 @@ class Tile extends React.Component {
                 type={'number'}
                 max={9}
                 min={1}
-                // value={this.whatIsValue()}
-                value={this.state.initValue}
+                value={this.whatIsValue()}
+                // value={this.state.initValue}
                 onChange={event => this.onChange(event)}
             />
         );

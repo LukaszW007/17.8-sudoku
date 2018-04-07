@@ -26,14 +26,17 @@ class App extends React.Component {
 
     editTileValue(id, value) {
         console.log('id: ' + id + ' wartosc: ' + value);
+        console.log('dlugosc board przed zmiana '+ this.state.board.length);
         const newBoard = this.state.board.splice(id, 1, value);
+        // this.setState({board:newBoard});
         // console.log('newboard 0 element '+newBoard[1]);
         // console.log('newboard 1 element '+newBoard[0]);
         // const arr = Object.keys(newBoard).map(function (key) { return newBoard[key]; });
         // console.log('arr rodzaj: ' + typeof newBoard[0]);
-        this.setState({board: newBoard});
+        this.setState({board: [...this.state.board]});
         console.log('to jest nowa tablica ' + this.state.board + ' a to rodzaj: ' + typeof this.state.board);
-        this.componentWillMount();
+        console.log('dlugosc board po zmianie '+ this.state.board.length);
+
     }
 
     checkGame() {
