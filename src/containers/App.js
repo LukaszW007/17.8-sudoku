@@ -46,7 +46,9 @@ class App extends React.Component {
         if (!sudoku.solve(this.state.board)) {
             console.log('Nie da sie rozwiazac')
         } else {
-            this.setState({board: sudoku.solve(this.state.board)})
+            const solvedSudoku=sudoku.solve(this.state.board);
+            console.log (typeof solvedSudoku+' rozwiazana tablica: '+solvedSudoku);
+            this.setState({board:solvedSudoku.split('') })
         }
     }
 
@@ -55,7 +57,7 @@ class App extends React.Component {
     }
 
     restartGame() {
-        this.componentWillMount();
+        this.stringToArray();
     }
 
     render() {
