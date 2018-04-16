@@ -13,6 +13,11 @@ class Tile extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps){
+        console.log('nextProps '+nextProps.initValue+' typ: '+typeof nextProps);
+        this.setState({initValue: nextProps.valueOfTile})
+    }
+
     whatIsValue() {
         if (!this.state.tilesNewValue) {
             console.log('1. initValue: ' + this.state.initValue + ' tilesNewValue ' + this.state.tilesNewValue);

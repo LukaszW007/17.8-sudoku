@@ -20,45 +20,38 @@ class App extends React.Component {
 
     stringToArray() {
         this.setState({board: this.state.initialBoard.split('')});
-        console.log('initialBoard to: '+typeof this.state.initialBoard);
-        console.log('board to: '+typeof this.state.board);
+        console.log('initialBoard to: ' + typeof this.state.initialBoard);
+        console.log('board to: ' + typeof this.state.board);
     }
 
     editTileValue(id, value) {
         console.log('id: ' + id + ' wartosc: ' + value);
-        console.log('dlugosc board przed zmiana '+ this.state.board.length);
+        console.log('dlugosc board przed zmiana ' + this.state.board.length);
         const newBoard = this.state.board.splice(id, 1, value);
-        // this.setState({board:newBoard});
-        // console.log('newboard 0 element '+newBoard[1]);
-        // console.log('newboard 1 element '+newBoard[0]);
-        // const arr = Object.keys(newBoard).map(function (key) { return newBoard[key]; });
-        // console.log('arr rodzaj: ' + typeof newBoard[0]);
         this.setState({board: [...this.state.board]});
         console.log('to jest nowa tablica ' + this.state.board + ' a to rodzaj: ' + typeof this.state.board);
-        console.log('dlugosc board po zmianie '+ this.state.board.length);
+        console.log('dlugosc board po zmianie ' + this.state.board.length);
 
     }
 
-    solve(){
-        if(!sudoku.solve(this.state.board)){
+    solve() {
+        if (!sudoku.solve(this.state.board)) {
             console.log('Podążasz w złym kierunku')
-        }else {
-            console.log('Podążasz w dobrym kierunku')        }
+        } else {
+            console.log('Podążasz w dobrym kierunku')
+        }
     }
+
     checkGame() {
-        if(!sudoku.solve(this.state.board)){
+        if (!sudoku.solve(this.state.board)) {
             console.log('Nie da sie rozwiazac')
-        }else {
-            this.setState({board:sudoku.solve(this.state.board)})
+        } else {
+            this.setState({board: sudoku.solve(this.state.board)})
         }
     }
 
     newGame() {
-        const generatedBoard=sudoku.generate("medium");
-        this.setState({initialBoard: generatedBoard},this.componentWillMount());
-        console.log('genreowanie nowego sudoku: '+generatedBoard);
-        // this.render();
-
+        this.setState({initialBoard: sudoku.generate("medium")}, () => this.stringToArray());
     }
 
     restartGame() {
@@ -74,10 +67,10 @@ class App extends React.Component {
                     this.editTileValue(id, value)
                 }}/>
                 <div className="buttons">
-                    <button onClick={()=>this.checkGame()}>Check</button>
-                    <button onClick={()=>this.newGame()}>New Game</button>
-                    <button onClick={()=>this.solve()}>Solve</button>
-                    <button onClick={()=>this.restartGame()}>Restart</button>
+                    <button onClick={() => this.checkGame()}>Check</button>
+                    <button onClick={() => this.newGame()}>New Game</button>
+                    <button onClick={() => this.solve()}>Solve</button>
+                    <button onClick={() => this.restartGame()}>Restart</button>
                 </div>
             </div>
         );
